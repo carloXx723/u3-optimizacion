@@ -16,10 +16,10 @@ import {
 
 export default function DefaultSidebar() {
   return (
-<Card
-  className="h-screen w-full max-w-[18rem] p-4 shadow-lg bg-white border-r rounded-none"
-  placeholder={undefined}
->
+    <Card
+      className="h-screen w-full max-w-[18rem] p-4 shadow-lg bg-white border-r rounded-none"
+      placeholder=""
+    >
       <div className="mb-6">
         <Typography className="text-black text-2xl font-bold tracking-wide">
           U3 Optimización
@@ -51,55 +51,17 @@ export default function DefaultSidebar() {
           Prompts
         </Typography>
 
-        {/* Prompt 1 */}
-        <Link href="/prompt1">
-          <ListItem className="text-black hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-lg">
-            <ListItemPrefix>
-              <SparklesIcon className="h-5 w-5 text-gray-700 m-1" />
-            </ListItemPrefix>
-            Prompt 1
-          </ListItem>
-        </Link>
-
-        {/* Prompt 2 */}
-        <Link href="/prompt2">
-          <ListItem className="text-black hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-lg">
-            <ListItemPrefix>
-              <SparklesIcon className="h-5 w-5 text-gray-700 m-1" />
-            </ListItemPrefix>
-            Prompt 2
-          </ListItem>
-        </Link>
-
-        {/* Prompt 3 */}
-        <Link href="/prompt3">
-          <ListItem className="text-black hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-lg">
-            <ListItemPrefix>
-              <SparklesIcon className="h-5 w-5 text-gray-700 m-1" />
-            </ListItemPrefix>
-            Prompt 3
-          </ListItem>
-        </Link>
-
-        {/* Prompt 4 */}
-        <Link href="/prompt4">
-          <ListItem className="text-black hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-lg">
-            <ListItemPrefix>
-              <SparklesIcon className="h-5 w-5 text-gray-700 m-1" />
-            </ListItemPrefix>
-            Prompt 4
-          </ListItem>
-        </Link>
-
-        {/* Prompt 5 */}
-        <Link href="/prompt5">
-          <ListItem className="text-black hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-lg">
-            <ListItemPrefix>
-              <SparklesIcon className="h-5 w-5 text-gray-700 m-1" />
-            </ListItemPrefix>
-            Prompt 5
-          </ListItem>
-        </Link>
+        {/* Prompts */}
+        {["1", "2", "3", "4", "5"].map((n) => (
+          <Link key={n} href={`/prompt${n}`}>
+            <ListItem className="text-black hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-lg">
+              <ListItemPrefix>
+                <SparklesIcon className="h-5 w-5 text-gray-700 m-1" />
+              </ListItemPrefix>
+              {`Prompt ${n}`}
+            </ListItem>
+          </Link>
+        ))}
       </List>
     </Card>
   );
