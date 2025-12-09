@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import {
-  Card,
   Typography,
   List,
   ListItem,
@@ -16,10 +15,7 @@ import {
 
 export default function DefaultSidebar() {
   return (
-    <Card
-      className="h-screen w-full max-w-[18rem] p-4 shadow-lg bg-white border-r rounded-none"
-      placeholder=""
-    >
+    <div className="h-screen w-full max-w-[18rem] p-4 shadow-lg bg-white border-r rounded-none">
       <div className="mb-6">
         <Typography className="text-black text-2xl font-bold tracking-wide">
           U3 Optimización
@@ -51,7 +47,6 @@ export default function DefaultSidebar() {
           Prompts
         </Typography>
 
-        {/* Prompts */}
         {["1", "2", "3", "4", "5"].map((n) => (
           <Link key={n} href={`/prompt${n}`}>
             <ListItem className="text-black hover:bg-gray-100 cursor-pointer transition-all duration-200 rounded-lg">
@@ -63,6 +58,6 @@ export default function DefaultSidebar() {
           </Link>
         ))}
       </List>
-    </Card>
+    </div>
   );
 }
