@@ -16,7 +16,10 @@ import {
 
 export default function DefaultSidebar() {
   return (
-    <Card className="h-screen w-full max-w-[18rem] p-4 shadow-lg bg-white border-r rounded-none">
+<Card
+  className="h-screen w-full max-w-[18rem] p-4 shadow-lg bg-white border-r rounded-none"
+  placeholder={undefined}
+>
       <div className="mb-6">
         <Typography className="text-black text-2xl font-bold tracking-wide">
           U3 Optimización
