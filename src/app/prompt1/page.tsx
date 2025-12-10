@@ -7,7 +7,7 @@ import {
     PhotoIcon
 } from '@heroicons/react/24/outline';
 
-// --- CONFIGURACIÓN DE DATOS ---
+// --- CONFIGURACIÓN DE DATOS (PROMPT 1) ---
 const models = [
     {
         id: "tinyllama",
@@ -76,133 +76,7 @@ public class Prompt1 {
         input.close();
     }
 
-    /**
-     * Calculate the mode of an array of integers using the Fisher-Yates shuffle method. The method returns the mode as the first element of the array, or null if the array is empty.
-     * @param arr An array of integers.
-     * @return The mode of the array.
-     */
-    private static int getMode(int[] arr) {
-        if (arr.length == 0) return null; // If the array is empty, there's no mode
-
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(arr.length); // Choose a random index in the array and update its position with that random value
-        int mode = arr[randomIndex]; // Save the randomly selected element as the mode
-
-        for (int I = 0; I < arr.length - 1; i++) {
-            int nextRandomIndex = rand.nextInt(arr.length); // Choose a random index between i and arr.length-1, in the same way as above
-            int temp = arr[i]; // Save the element at the current index for comparison with the randomly selected element at the new index
-            if (array[nextRandomIndex] < temp) { // If the randomly selected element is smaller than the next one, swap them
-                arr[nextRandomIndex] = temp;
-                array[i] = temp;
-            }
-        }
-
-        return mode;
-    }
-
-    /**
-     * Calculate the Fisher-Yates shuffle method's average and variance. The method returns a randomized array, but it assumes that each element is already selected with probability 1/n.
-     * @param arr An array of integers to be randomized.
-     * @return A new array of integers with the Fisher-Yates method applied.
-     */
-    private static int[] getFisherYates(int[] arr) {
-        Random rand = new Random(); // Create a new Random object for the Fisher-Yates algorithm
-
-        int n = arr.length; // Calculate the number of elements in the array
-
-        int[] sortedArr = new int[n]; // Allocate an array of integers to store the sorted array
-
-        for (int I = 0; i < n; i++) { // For each element, randomly choose a position and select its value
-            int randomIndex = rand.nextInt(n); // Choose a random index in the remaining elements with probability 1/n
-            sortedArr[i] = arr[randomIndex]; // Save the randomly chosen element as the sorted element at the i-th position, in the same way as above
-        }
-
-        for (int I = 0; i < n; i++) { // For each element of the sorted array, calculate its average and variance
-            int randomIndex = rand.nextInt(n); // Choose a random index in the remaining elements with probability 1/n
-
-            double average = 0; // Initialize the average to zero
-
-            for (int j = I - 1; j >= 0; j--) { // For each element of the array between i and the previous one, calculate its variance and add it to the average
-                int randomIndex2 = rand.nextInt(n); // Choose a random index in the remaining elements with probability 1/n
-
-                if (arr[randomIndex] != arr[randomIndex2]) { // If the randomly selected element is different from any other, add it to the average
-                    double delta = arr[randomIndex] - arr[randomIndex2];
-
-                    if (average == 0) { // Check for a zero average case
-                        average += delta;
-                    } else { // Otherwise, calculate the variance and update the average with it
-                        average += (arr[randomIndex] - average) * (arr[randomIndex] - average);
-                    }
-                }
-            }
-
-            if (average != 0) {
-                double variance = average / n; // Calculate the variance
-                sortedArr[i] = sortedArr[i] + variance * random.nextInt(1 - variance * I); // Add a randomly selected element with its own variance to the sorted array at the i-th position
-            }
-        }
-
-        return sortedArr; // Return the sorted array with Fisher-Yates shuffling applied
-    }
-
-    /**
-     * Calculate the mode of an array of integers using the median method. The method returns the mode as the first element of the array, or null if the array is empty.
-     * @param arr An array of integers.
-     * @return The mode of the array.
-     */
-    private static int getModeAvg(int[] arr) {
-        if (arr.length == 0) return null; // If the array is empty, there's no mode
-
-        Random rand = new Random(); // Create a new Random object for the median method
-
-        int n = arr.length; // Calculate the number of elements in the array
-
-        double[] medians = new double[n]; // Allocate an array to store the median values of each element
-
-        int[] sortedArr = getFisherYates(arr); // Get the Fisher-Yates shuffled array for the median method, as per the comments above
-
-        for (int I = 0; I < n; i++) {
-            medians[i] = getMedian(sortedArr); // Calculate and store the median of the sorted array at the i-th position
-        }
-
-        if (medians[0] == null) return null; // If there's no median in the sorted array, the mode is also null
-
-        double median = medians[0]; // The median is the first element of the sorted array
-
-        for (int I = 1; i < n; i++) { // For each element in the sorted array between i-1 and i-2, calculate their difference and use it to find the median
-            int randomIndex2 = rand.nextInt(n - i + 1) + i; // Choose a random index in the remaining elements with probability 1/n
-
-            double delta = medians[i] - median;
-
-            if (delta != 0) {
-                double newMedian = getMedian(sortedArr);
-
-                if (newMedian == null) { // If the median is also null, there's no mode
-                    return null;
-                } else {
-                    if (newMedian < median) { // If the new median is less than the current median, the current element has a lower median and we add it to the array of modes
-                        medians = Arrays.copyOf(medians, n);
-                        medians[n - I + 1] = median;
-                    } else if (newMedian > median) { // If the new median is greater than the current median, we remove it from the array of modes and add the element to the sorted array at the i-th position
-                        int startIndex = medians[n - I + 1] == newMedian ? n - 1 : medians[n - I + 1]; // Calculate the index of the element in the sorted array with the new median as its value
-
-                        for (int j = I; j <= startIndex; j++) {
-                            sortedArr[j] = medians[j];
-                        }
-                    }
-                }
-            }
-        }
-
-        return Arrays.median(medians); // Return the median of the sorted array with its mode as the first element
-    }
-
-    /**
-     * Calculate the Fisher-Yates shuffle method's average case runtime complexity, which is O(n^2) for n random elements in the array. This is the worst case complexity and not guaranteed to be optimal.
-     */
-    private static void printRuntime() {
-        System.out.println("Time: O(n^2)"); // Print the worst-case runtime complexity
-    }
+    // ... (Resto del código de TinyLlama) ...
 }`
     },
     {
@@ -278,202 +152,99 @@ public class Prompt1 {
         color: "purple",
         metrics: { classes: 1, methods: 5, attributes: 0, assignments: 13, compiles: "Compilación Exitosa" },
         image: "/img/prompt1_modelo3.png",
-        code: `import java.util.Random;
-import java.util.Scanner;
+        code: `import java.util.Arrays;
+import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Prompt1 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        // Define the range of integers to be generated
-        int min = 1;
-        int max = 1000;
-
-        System.out.print("Enter the lower bound of the random integer distribution: ");
-        if (!input.hasNextInt()) {
-            System.out.println("Invalid input, please enter an integer.");
-            return;
+        // Create array with 200 random integers between 1 and 1000
+        int[] numbers = new int[200];
+        Random random = new Random();
+        
+        // Fill array with random values
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = random.nextInt(1000) + 1; // 1-1000 inclusive
         }
-        while (min > input.nextInt()) {
-            min = input.nextInt();
-        }
-
-        System.out.print("Enter the upper bound of the random integer distribution: ");
-        if (!input.hasNextInt()) {
-            System.out.println("Invalid input, please enter an integer.");
-            return;
-        }
-        while (max < input.nextInt()) {
-            max = input.nextInt();
-        }
-
-        // Generate random integers using the range defined above
-        Random rand = new Random();
-        int[] array = new int[200];
-        for (int I = 0; I < array.length; i++) {
-            int randomNum = rand.nextInt(max - min + 1) + min; // Generate a random integer between min and max
-            array[i] = randomNum; // Save the generated integer in the array
-        }
-
-        // Calculate the mode
-        int mode = getMode(array);
-
-        // Calculate the median
-        double median = getMedian(array);
-
-        // Print the 200 generated integers to the console
-        for (int I = 0; I < array.length; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
-
-        // Calculate and print the mode using the formula: Mode = average of all unique values divided by (number of unique values - 1)
-        double modeAvg = getModeAvg(array);
-        System.out.printf("Mode is %.2f\n", modeAvg * (array.length - 1)); // Format the result to two decimal places
-
-        // Calculate and print the median using the formula: Median = average of all unique values divided by number of unique values
-        double medianAvg = getMedianAvg(array);
-        System.out.printf("Median is %.2f\n", medianAvg * array.length); // Format the result to two decimal places
-
-        input.close();
-    }
-
-    /**
-     * Calculate the mode of an array of integers using the Fisher-Yates shuffle method. The method returns the mode as the first element of the
-array, or null if the array is empty.
-     * @param arr An array of integers.
-     * @return The mode of the array.
-     */
-    private static int getMode(int[] arr) {
-        if (arr.length == 0) return null; // If the array is empty, there's no mode
-
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(arr.length); // Choose a random index in the array and update its position with that random value
-        int mode = arr[randomIndex]; // Save the randomly selected element as the mode
-
-        for (int I = 0; I < arr.length - 1; i++) {
-            int nextRandomIndex = rand.nextInt(arr.length); // Choose a random index between i and arr.length-1, in the same way as above
-            int temp = arr[i]; // Save the element at the current index for comparison with the randomly selected element at the new index
-            if (array[nextRandomIndex] < temp) { // If the randomly selected element is smaller than the next one, swap them
-                arr[nextRandomIndex] = temp;
-                array[i] = temp;
+        
+        // Print all 200 values
+        System.out.println("Generated 200 random integers (1-1000):");
+        System.out.println("========================================");
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.printf("%4d", numbers[i]);
+            // Print 10 numbers per line for better readability
+            if ((i + 1) % 10 == 0) {
+                System.out.println();
             }
         }
-
+        System.out.println("\n");
+        
+        // Calculate and print mean
+        double mean = calculateMean(numbers);
+        System.out.printf("Mean: %.2f%n", mean);
+        
+        // Calculate and print median
+        double median = calculateMedian(numbers);
+        System.out.printf("Median: %.1f%n", median);
+        
+        // Calculate and print mode
+        int mode = calculateMode(numbers);
+        System.out.println("Mode: " + mode);
+    }
+    
+    // Method to calculate the mean (average)
+    public static double calculateMean(int[] arr) {
+        long sum = 0;
+        for (int num : arr) {
+            sum += num;
+        }
+        return (double) sum / arr.length;
+    }
+    
+    // Method to calculate the median
+    public static double calculateMedian(int[] arr) {
+        // Create a copy to avoid modifying the original array
+        int[] sortedArr = arr.clone();
+        Arrays.sort(sortedArr);
+        
+        int length = sortedArr.length;
+        if (length % 2 == 0) {
+            // Even number of elements: average of two middle elements
+            int mid1 = sortedArr[length / 2 - 1];
+            int mid2 = sortedArr[length / 2];
+            return (mid1 + mid2) / 2.0;
+        } else {
+            // Odd number of elements: middle element
+            return sortedArr[length / 2];
+        }
+    }
+    
+    // Method to calculate the mode (most frequent value)
+    public static int calculateMode(int[] arr) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        
+        // Count frequency of each number
+        for (int num : arr) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+        
+        // Find the number with the highest frequency
+        int mode = arr[0];
+        int maxFrequency = 0;
+        
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() > maxFrequency) {
+                maxFrequency = entry.getValue();
+                mode = entry.getKey();
+            }
+            // If there's a tie, choose the smaller number
+            else if (entry.getValue() == maxFrequency && entry.getKey() < mode) {
+                mode = entry.getKey();
+            }
+        }
+        
         return mode;
-    }
-
-    /**
-     * Calculate the Fisher-Yates shuffle method's average and variance. The method returns a randomized array, but it assumes that each element is
-already selected with probability 1/n.
-     * @param arr An array of integers to be randomized.
-     * @return A new array of integers with the Fisher-Yates method applied.
-     */
-    private static int[] getFisherYates(int[] arr) {
-        Random rand = new Random(); // Create a new Random object for the Fisher-Yates algorithm
-
-        int n = arr.length; // Calculate the number of elements in the array
-
-        int[] sortedArr = new int[n]; // Allocate an array of integers to store the sorted array
-
-        for (int I = 0; i < n; i++) { // For each element, randomly choose a position and select its value
-            int randomIndex = rand.nextInt(n); // Choose a random index in the remaining elements with probability 1/n
-            sortedArr[i] = arr[randomIndex]; // Save the randomly chosen element as the sorted element at the i-th position, in the same way as above
-        }
-
-        for (int I = 0; i < n; i++) { // For each element of the sorted array, calculate its average and variance
-            int randomIndex = rand.nextInt(n); // Choose a random index in the remaining elements with probability 1/n
-
-            double average = 0; // Initialize the average to zero
-
-            for (int j = I - 1; j >= 0; j--) { // For each element of the array between i and the previous one, calculate its variance and add it to
-the average
-                int randomIndex2 = rand.nextInt(n); // Choose a random index in the remaining elements with probability 1/n
-
-                if (arr[randomIndex] != arr[randomIndex2]) { // If the randomly selected element is different from any other, add it to the average
-                    double delta = arr[randomIndex] - arr[randomIndex2];
-
-                    if (average == 0) { // Check for a zero average case
-                        average += delta;
-                    } else { // Otherwise, calculate the variance and update the average with it
-                        average += (arr[randomIndex] - average) * (arr[randomIndex] - average);
-                    }
-                }
-            }
-
-            if (average != 0) {
-                double variance = average / n; // Calculate the variance
-                sortedArr[i] = sortedArr[i] + variance * random.nextInt(1 - variance * I); // Add a randomly selected element with its own variance to
-the sorted array at the i-th position
-            }
-        }
-
-        return sortedArr; // Return the sorted array with Fisher-Yates shuffling applied
-    }
-
-    /**
-     * Calculate the mode of an array of integers using the median method. The method returns the mode as the first element of the array, or null if
-the array is empty.
-     * @param arr An array of integers.
-     * @return The mode of the array.
-     */
-    private static int getModeAvg(int[] arr) {
-        if (arr.length == 0) return null; // If the array is empty, there's no mode
-
-        Random rand = new Random(); // Create a new Random object for the median method
-
-        int n = arr.length; // Calculate the number of elements in the array
-
-        double[] medians = new double[n]; // Allocate an array to store the median values of each element
-
-        int[] sortedArr = getFisherYates(arr); // Get the Fisher-Yates shuffled array for the median method, as per the comments above
-
-        for (int I = 0; I < n; i++) {
-            medians[i] = getMedian(sortedArr); // Calculate and store the median of the sorted array at the i-th position
-        }
-
-        if (medians[0] == null) return null; // If there's no median in the sorted array, the mode is also null
-
-        double median = medians[0]; // The median is the first element of the sorted array
-
-        for (int I = 1; i < n; i++) { // For each element in the sorted array between i-1 and i-2, calculate their difference and use it to find the
-median
-            int randomIndex2 = rand.nextInt(n - i + 1) + i; // Choose a random index in the remaining elements with probability 1/n
-
-            double delta = medians[i] - median;
-
-            if (delta != 0) {
-                double newMedian = getMedian(sortedArr);
-
-                if (newMedian == null) { // If the median is also null, there's no mode
-                    return null;
-                } else {
-                    if (newMedian < median) { // If the new median is less than the current median, the current element has a lower median and we add
-it to the array of modes
-                        medians = Arrays.copyOf(medians, n);
-                        medians[n - I + 1] = median;
-                    } else if (newMedian > median) { // If the new median is greater than the current median, we remove it from the array of modes and
-add the element to the sorted array at the i-th position
-                        int startIndex = medians[n - I + 1] == newMedian ? n - 1 : medians[n - I + 1]; // Calculate the index of the element in the
-sorted array with the new median as its value
-
-                        for (int j = I; j <= startIndex; j++) {
-                            sortedArr[j] = medians[j];
-                        }
-                    }
-                }
-            }
-        }
-
-        return Arrays.median(medians); // Return the median of the sorted array with its mode as the first element
-    }
-
-    /**
-     * Calculate the Fisher-Yates shuffle method's average case runtime complexity, which is O(n^2) for n random elements in the array. This is the
-worst case complexity and not guaranteed to be optimal.
-     */
-    private static void printRuntime() {
-        System.out.println("Time: O(n^2)"); // Print the worst-case runtime complexity
     }
 }
 `
@@ -484,32 +255,134 @@ worst case complexity and not guaranteed to be optimal.
         badge: "Modelo 4",
         color: "teal",
         metrics: { classes: 0, methods: 0, attributes: 0, assignments: 0, compiles: "Pendiente" },
-        // ASEGÚRATE DE QUE LA CARPETA 'img' ESTÉ DENTRO DE 'public'
         image: "/img/prompt1_modelo4.png",
         code: `[-0.054033414,0.025111003,-0.035619672,-0.0069709914,-0.009413174,0.008719362,
--0.015164624,0.006458623,-0.0037928564,-0.03529834,-0.0521333,0.045289226,-0.016350586,
--0.03210082,0.0040480834,0.018934453,-0.007282004,0.03956205,0.0024350323,-0.005823932,
-0.022032833,0.01606718,-0.012996086,0.00040849386,0.006178037,0.0132244,-0.011812872,
--0.036885794,0.0145734325,-0.03932164,0.00084119313,0.000045652683,0.023893863,-0.044089008,
--0.034924097,0.029432917,-0.04014345,0.0011532499,-0.026737401,0.008351286,-0.017228877,0.00006781908,
--0.00047645895,-0.00040745368,-0.033241402,0.0038854622,-0.011392728,-0.043230053,-0.0061065597,-0.015033939,
--0.012164767,0.01309528,0.07334619,-0.03976511,0.029749682,0.027854417,-0.008521548,0.014715721,-0.073356844,
-0.0041953255,0.010574352,0.0650729,-0.053978313.....`
+-0.015164624,0.006458623,-0.0037928564,-0.03529834,-0.0521333,0.045289226,-0.016350586, 
+0.034970094,0.011638906,-0.025463343,-0.0014211435,0.009360894,0.02452093,0.0016920327,-0.033342596,0.002884327,
+        0.005494508,0.010312366,-0.023784265,0.014078239,0.03309888,0.04043619,0.035597086,0.00920535,0.008813096,-0.009722914,
+        -0.025661679,0.05255378,0.011281034,-0.03102111,-0.019839693,0.022472782,-0.049190693,-0.05086245,-0.040534627,
+        -0.036088098,0.071767986,-0.041108683,0.0034465587,0.012610581,0.03023598,-0.027321102,0.019347817,-0.0875246,
+        -0.018451829,-0.008726411,-0.013851983,-0.023767054,-0.04716243,0.065141045,-0.015326207,-0.04387493,0.011471414
+        ,0.035379626,-0.07959127,0.05773199,-0.012716631,-0.017909544,-0.009960344,0.0159457,0.05504816,0.028523866,
+        -0.020496536,-0.018351264,0.0003652771,-0.030658297,0.011311837,0.04319145,0.04422392,0.008128439,0.04471694,
+        -0.016078837,0.043392364,0.022571351,0.0005347074,-0.001818942,0.03214835,-0.024267966,-0.0473621,0.04697261,
+        0.02659041,0.017830813,-0.0011683697,0.018906185,0.008535298,0.0036076498,0.021809958,-0.0048159133,-0.057142578,
+        -0.018989203,-0.0068644267,-0.007649582,0.0021380936,-0.021027748,0.0015112731,-0.0005730644,0.022214876,0.0075597893, ...`
     },
     {
         id: "llama33",
         name: "Llama 3.3",
         badge: "Modelo 5",
         color: "orange",
-        metrics: { classes: 0, methods: 0, attributes: 0, assignments: 0, compiles: "Pendiente" },
-        image: "",
-        code: `public class Prompt1 {
-    // Código de Llama 3.3...
+        metrics: { classes: 1, methods: 4, attributes: 0, assignments: 5, compiles: "Compilación Exitosa" },
+        image: "/img/prompt1_modelo5.png",
+        code: `import java.util.Arrays;
+import java.util.Random;
+
+public class Prompt1 {
+    public static void main(String[] args) {
+        // Initialize variables
+        int[] array = new int[200];
+        Random random = new Random();
+
+        // Fill the array with random values
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(1000) + 1; // Generate random numbers between 1 and 1000
+        }
+
+        // Print the array
+        System.out.println("Generated Array:");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+            if ((i + 1) % 20 == 0) {
+                System.out.println();
+            }
+        }
+
+        // Calculate and print the mode
+        int mode = calculateMode(array);
+        System.out.println("\nMode: " + mode);
+
+        // Calculate and print the median
+        double median = calculateMedian(array);
+        System.out.println("Median: " + median);
+
+        // Calculate and print the mean
+        double mean = calculateMean(array);
+        System.out.println("Mean: " + mean);
+    }
+
+    /**
+     * Calculates the mode of the given array.
+     * If there are multiple modes, this method returns the smallest one.
+     *
+     * @param array the input array
+     * @return the mode of the array
+     */
+    public static int calculateMode(int[] array) {
+        int maxCount = 0;
+        int mode = array[0];
+
+        for (int i = 0; i < array.length; i++) {
+            int count = 0;
+            for (int j = 0; j < array.length; j++) {
+                if (array[i] == array[j]) {
+                    count++;
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                mode = array[i];
+            } else if (count == maxCount && array[i] < mode) {
+                mode = array[i];
+            }
+        }
+
+        return mode;
+    }
+
+    /**
+     * Calculates the median of the given array.
+     *
+     * @param array the input array
+     * @return the median of the array
+     */
+    public static double calculateMedian(int[] array) {
+        Arrays.sort(array);
+        int n = array.length;
+
+        if (n % 2 == 0) {
+            return (array[n / 2 - 1] + array[n / 2]) / 2.0;
+        } else {
+            return array[n / 2];
+        }
+    }
+
+    /**
+     * Calculates the mean of the given array.
+     *
+     * @param array the input array
+     * @return the mean of the array
+     */
+    public static double calculateMean(int[] array) {
+        double sum = 0;
+        for (int value : array) {
+            sum += value;
+        }
+        return sum / array.length;
+    }
 }`
     }
 ];
 
 export default function Prompt1Page() {
+
+    // Función auxiliar para verificar si compila (flexibilidad en el texto)
+    const checkCompilation = (status: string) => {
+        const s = status.toLowerCase();
+        return s === "sí" || s === "si" || s === "yes" || s.includes("exitosa");
+    };
+
     return (
         <div className="min-h-screen bg-white text-gray-800 font-sans selection:bg-blue-600 selection:text-white">
 
@@ -519,6 +392,9 @@ export default function Prompt1Page() {
                     <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
                         Prompt 1
                     </h1>
+                    <p className="text-lg text-gray-600">
+                        Cálculo de Moda, Media y Mediana
+                    </p>
                 </div>
             </header>
 
@@ -598,9 +474,9 @@ export default function Prompt1Page() {
                                         <td className="px-6 py-4 text-center text-gray-600">{model.metrics.assignments}</td>
                                         <td className="px-6 py-4 text-center">
                                             <span className={`px-2 py-1 rounded text-xs font-medium ${
-                                                model.metrics.compiles === "Sí" || model.metrics.compiles === "Yes" 
-                                                ? "bg-green-100 text-green-700" 
-                                                : "bg-gray-100 text-gray-500"
+                                                checkCompilation(model.metrics.compiles)
+                                                ? "bg-green-100 text-green-700 border border-green-200" 
+                                                : "bg-gray-100 text-gray-500 border border-gray-200"
                                             }`}>
                                                 {model.metrics.compiles}
                                             </span>
@@ -615,7 +491,7 @@ export default function Prompt1Page() {
                     </p>
                 </section>
 
-                {/* --- SECTION 3: DETAILED RESULTS (GENERATED CARDS) --- */}
+                {/* --- SECTION 3: DETAILED RESULTS --- */}
                 <section>
                     <div className="flex items-center gap-2 mb-6">
                         <div className="p-2 bg-indigo-100 rounded-lg">
@@ -635,14 +511,14 @@ export default function Prompt1Page() {
                                 </div>
 
                                 <div className="grid md:grid-cols-2 gap-6">
-                                    {/* --- Área de Código --- */}
+                                    {/* --- Área de Código (Con Scroll) --- */}
                                     <div className="bg-slate-900 rounded-lg p-4 relative group">
                                         <div className="flex justify-between items-center border-b border-gray-700 pb-2 mb-2">
                                             <p className="text-gray-400 text-xs">Prompt1.java</p>
                                             <span className="text-[10px] text-gray-500">{model.name} Output</span>
                                         </div>
-                                        {/* AQUI ESTÁ EL CAMBIO: max-h-[500px] y overflow-y-auto */}
-                                        <pre className="text-xs text-green-400 font-mono min-h-[200px] max-h-[500px] overflow-y-auto overflow-x-auto">
+                                        {/* SCROLL ACTIVADO AQUÍ */}
+                                        <pre className="text-xs text-green-400 font-mono min-h-[200px] max-h-[500px] overflow-y-auto overflow-x-auto whitespace-pre">
                                             {model.code}
                                         </pre>
                                     </div>
@@ -650,7 +526,6 @@ export default function Prompt1Page() {
                                     {/* --- Área de Ejecución / Compilación --- */}
                                     <div className="space-y-4">
                                         
-                                        {/* Métricas */}
                                         <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                                             <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
                                                 <CalculatorIcon className="w-4 h-4" />
@@ -664,7 +539,12 @@ export default function Prompt1Page() {
                                                     <p>Atributos: <span className="font-bold">{model.metrics.attributes}</span></p>
                                                     <p>Asignaciones: <span className="font-bold">{model.metrics.assignments}</span></p>
                                                 </div>
-                                             
+                                                {/* ESTADO CON CONDICIONAL DE COLOR */}
+                                                <p className={`italic mt-2 border-t border-gray-200 pt-1 ${
+                                                    checkCompilation(model.metrics.compiles) ? "text-gray-400 italic mt-2 border-t border-gray-200 pt-1" : "text-gray-400"
+                                                }`}>
+                                                    Estado: {model.metrics.compiles}
+                                                </p>
                                             </div>
                                         </div>
 

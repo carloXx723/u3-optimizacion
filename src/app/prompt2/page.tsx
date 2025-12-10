@@ -14,35 +14,231 @@ const models = [
         name: "TinyLlama",
         badge: "Modelo 1",
         color: "blue",
-        metrics: { classes: 0, methods: 0, attributes: 0, assignments: 0, compiles: "Pendiente" },
-        image: "", 
-        code: `public class Prompt2 {
+        metrics: { classes: 1, methods: 3, attributes: 0, assignments: 2, compiles: "Compilacion Exitosa" },
+        image: "/img/prompt2_modelo1.png", 
+        code: `import java.util.Random;
+
+public class Prompt2 {
     public static void main(String[] args) {
-        // Código generado por TinyLlama para Quicksort...
+        Random rand = new Random(); // initialize random generator with seed
+
+        int n = Integer.parseInt(System.console().readLine("Enter the number of elements you want to generate:
+"));
+        int[] arr = new int[n];
+        for (int I = 0; I < n; i++) {
+            Random rand = new Random(); // initialize random generator with seed
+            int min = rand.nextInt(1000) + 1; // generate range from 1 to 1000
+            int max = min + rand.nextInt(200); // add 200 for the rest of the values
+
+            if (min > 1 || max > n) { // check if values are within array bounds
+                System.out.println("Invalid input: Array contains only integers between 1 and " + (n - 1) + ", not
+" + min + "-" + max);
+                System.exit(0);
+            }
+
+            arr[i] = rand.nextInt(max - min + 1) + min; // generate random elements
+        }
+
+        // sort array using quicksort method
+        int[] sortedArr = sortArr(arr, n);
+
+        System.out.println("Sorted array:");
+        for (int I : sortedArr) {
+            System.out.print(i + " ");
+        }
     }
-}`
+
+    private static int[] sortArr(int[] arr, int n) {
+        Quicksort quick = new Quicksort(); // create instance of Quicksort class
+
+        quick.partition(arr, 0, n - 1); // partition array using quicksort method
+
+        return quick.getSortedArray(); // get sorted array from the instance
+    }
+
+    private static int[] getArr() {
+        Random rand = new Random();
+        int n = 5; // number of elements to generate
+
+        int[] arr = new int[n];
+        for (int I = 0; I < n; i++) {
+            Random rand = new Random();
+            arr[i] = rand.nextInt(1000) + 1; // generate random values within range
+        }
+
+        return arr;
+    }
+}
+
+
+`
     },
     {
         id: "mistral",
         name: "Mistral-Nemo",
         badge: "Modelo 2",
         color: "indigo",
-        metrics: { classes: 0, methods: 0, attributes: 0, assignments: 0, compiles: "Pendiente" },
-        image: "",
-        code: `public class Prompt2 {
-    // Código generado por Mistral...
-}`
+        metrics: { classes: 1, methods: 5, attributes: 0, assignments: 3, compiles: "Compilacion Exitosa" },
+        image: "/img/prompt2_modelo2.png",
+        code: `import java.util.Arrays;
+import java.util.Random;
+
+public class Prompt2 {
+    public static void main(String[] args) {
+        final int SIZE = 200;
+        int[] arr = new int[SIZE];
+
+        Random random = new Random();
+        for (int i = 0; i < SIZE; i++) {
+            arr[i] = random.nextInt(1, 1001);
+        }
+
+        System.out.println("Original Array:");
+        printArray(arr);
+
+        quickSort(arr, 0, SIZE - 1);
+
+        System.out.println("\nSorted Array:");
+        printArray(arr);
+    }
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(arr, low, high);
+            quickSort(arr, low, pivotIndex - 1);
+            quickSort(arr, pivotIndex + 1, high);
+        }
+    }
+
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+
+        swap(arr, i + 1, high);
+        return i + 1;
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void printArray(int[] arr) {
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+`
     },
     {
         id: "deepseek",
         name: "DeepSeek-V3",
         badge: "Modelo 3",
         color: "purple",
-        metrics: { classes: 0, methods: 0, attributes: 0, assignments: 0, compiles: "Pendiente" },
-        image: "",
-        code: `public class Prompt2 {
-    // Código generado por DeepSeek...
-}`
+        metrics: { classes: 1, methods: 5, attributes: 0, assignments: 5, compiles: "Compilación Exitosa" },
+        image: "/img/prompt2_modelo3.png",
+        code: `import java.util.Random;
+
+public class Prompt2 {
+    
+    public static void main(String[] args) {
+        // Create array with 200 random integers between 1 and 1000
+        int[] numbers = new int[200];
+        Random random = new Random();
+        
+        // Fill array with random values
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = random.nextInt(1000) + 1; // 1-1000 inclusive
+        }
+        
+        System.out.println("Original array (unsorted):");
+        System.out.println("===========================");
+        printArray(numbers);
+        
+        // Sort the array using quicksort
+        quickSort(numbers, 0, numbers.length - 1);
+        
+        System.out.println("\nSorted array using quicksort:");
+        System.out.println("==============================");
+        printArray(numbers);
+        
+        // Verify the array is sorted
+        System.out.println("\nArray is sorted: " + isSorted(numbers));
+    }
+    
+    // Quicksort implementation
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // Partition the array and get the pivot index
+            int pivotIndex = partition(arr, low, high);
+            
+            // Recursively sort elements before and after partition
+            quickSort(arr, low, pivotIndex - 1);
+            quickSort(arr, pivotIndex + 1, high);
+        }
+    }
+    
+    // Partition method for quicksort
+    private static int partition(int[] arr, int low, int high) {
+        // Choose the rightmost element as pivot
+        int pivot = arr[high];
+        
+        // Index of smaller element
+        int i = low - 1;
+        
+        for (int j = low; j < high; j++) {
+            // If current element is smaller than or equal to pivot
+            if (arr[j] <= pivot) {
+                i++;
+                // Swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        
+        // Swap arr[i+1] and arr[high] (or pivot)
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        
+        return i + 1;
+    }
+    
+    // Utility method to print the array
+    public static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf("%4d", arr[i]);
+            // Print 10 numbers per line for better readability
+            if ((i + 1) % 10 == 0) {
+                System.out.println();
+            }
+        }
+        // Add newline if the last line wasn't complete
+        if (arr.length % 10 != 0) {
+            System.out.println();
+        }
+    }
+    
+    // Utility method to verify if array is sorted
+    public static boolean isSorted(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+`
     },
     {
         id: "bgem3",
@@ -50,25 +246,130 @@ const models = [
         badge: "Modelo 4",
         color: "teal",
         metrics: { classes: 0, methods: 0, attributes: 0, assignments: 0, compiles: "Pendiente" },
-        image: "", // Ejemplo: "/img/prompt2_modelo4.png"
-        code: `public class Prompt2 {
-    // Código generado por BGE-M3...
-}`
+        image: "/img/prompt2_modelo4.png", 
+        code: `[-0.07420411,0.02040203,-0.0027331577,0.0060475557,-0.004127269,0.0078077805,-0.025346214,-0.0067267874,-0.004865362,-0.021036305,
+        -0.039881177,0.05282981,-0.017187638,-0.026995787,-0.016298724,0.0036884397,-0.0049105915,0.042379968,-0.010913513,-0.009131759,0.0012730717,
+        0.010825484,-0.022834038,0.01791471,-0.016328763,0.004506486,0.00092492363,-0.0048356755,0.012498992,-0.0300613,-0.0006730573,0.011443699,
+        -0.0055236523,-0.038985964,-0.043918893,0.038872354,-0.041663345,-0.016658211,-0.025628984,0.011645706,-0.036007825,0.032411896,0.024071451,
+        -0.0058173304,-0.03143734,0.017103625,-0.00185961,-0.040341083,-0.005944264,-0.015252147,-0.01738191,0.03002754,0.05184401,-0.08181589,0.025283303
+        0.010245109,-0.009189825,0.01768179,-0.084295966,0.0037703454,0.019104036,0.057505198,-0.059142135,0.03615555,0.03911423,0.035577573,-0.0084727425
+        ,0.032584116,-0.005809887,0.028928386,0.0016455756,0.021612298,-0.030071788,0.001698545,-0.07342852,0.022242505,0.04510528,0.007365301,-0.092237175,
+        0.024144402,0.032201983,-0.01418976,-0.030370973,0.02748604,-0.037648454,0.023813205,0.018051216,0.041580427,-0.005625008,0.002144558,-0.012901553
+        0.0075800484,0.027638787,-0.05249452,-0.028668385,0.01756668,-0.024710316,0.006273245,0.022024095,0.008555056,-0.0353938,0.005596855,-0.0131209055,
+        0.04573047,0.020093024,-0.004434958,0.015188235,-0.001212233,-0.001981094,-0.02074546,0.030536428,0.011975703,0.065496065,-0.009433853,0.008097485,-
+        .008115368,-0.008896588,-0.023758186,0.050084688,0.0068796477,-0.025679266,0.04499581,0.03829566,-0.04591421,-0.034704603,-0.048596032,-0.04109757,
+        0.058064543,-0.010149006,-0.039822593,0.019360814,0.050852142,-0.004185735,0.04511931,-0.065194614,-0.021014515,-0.008141355,-0.004581769,-0.011742986,
+        -0.052012857,0.04316843,0.0060711894,-0.023327602,0.017262412,0.024109833,-0.08047237,0.041557346,-0.02654228,-0.010034652,-0.0190581...`
     },
     {
         id: "llama33",
         name: "Llama 3.3",
         badge: "Modelo 5",
         color: "orange",
-        metrics: { classes: 0, methods: 0, attributes: 0, assignments: 0, compiles: "Pendiente" },
-        image: "",
-        code: `public class Prompt2 {
-    // Código generado por Llama 3.3...
+        metrics: { classes: 1, methods: 5, attributes: 0, assignments: 3, compiles: "Compilación Exitosa" },
+        image: "/img/prompt2_modelo5.png",
+        code: `import java.util.Random;
+
+public class Prompt2 {
+    public static void main(String[] args) {
+        // Initialize variables
+        int[] array = new int[200];
+        Random random = new Random();
+
+        // Fill the array with random values
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(1000) + 1; // Generate random numbers between 1 and 1000
+        }
+
+        // Print the unsorted array
+        System.out.println("Unsorted Array:");
+        printArray(array);
+
+        // Sort the array using quicksort
+        quicksort(array, 0, array.length - 1);
+
+        // Print the sorted array
+        System.out.println("Sorted Array:");
+        printArray(array);
+    }
+
+    /**
+     * Prints the given array.
+     *
+     * @param array the input array
+     */
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+            if ((i + 1) % 20 == 0) {
+                System.out.println();
+            }
+        }
+        System.out.println();
+    }
+
+    /**
+     * Swaps two elements in the given array.
+     *
+     * @param array the input array
+     * @param i     the index of the first element
+     * @param j     the index of the second element
+     */
+    public static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    /**
+     * Partitions the given array around a pivot element.
+     *
+     * @param array the input array
+     * @param low   the low index
+     * @param high  the high index
+     * @return the index of the pivot element
+     */
+    public static int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = low - 1;
+
+        for (int j = low; j < high; j++) {
+            if (array[j] < pivot) {
+                i++;
+                swap(array, i, j);
+            }
+        }
+
+        swap(array, i + 1, high);
+        return i + 1;
+    }
+
+    /**
+     * Sorts the given array using the quicksort algorithm.
+     *
+     * @param array the input array
+     * @param low   the low index
+     * @param high  the high index
+     */
+    public static void quicksort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(array, low, high);
+            quicksort(array, low, pivotIndex - 1);
+            quicksort(array, pivotIndex + 1, high);
+        }
+    }
 }`
     }
 ];
 
 export default function Prompt2Page() {
+    
+    // Función auxiliar para verificar si compila (flexibilidad en el texto)
+    const checkCompilation = (status: string) => {
+        const s = status.toLowerCase();
+        return s === "sí" || s === "si" || s === "yes" || s.includes("exitosa");
+    };
+
     return (
         <div className="min-h-screen bg-white text-gray-800 font-sans selection:bg-blue-600 selection:text-white">
 
@@ -158,9 +459,9 @@ export default function Prompt2Page() {
                                         <td className="px-6 py-4 text-center text-gray-600">{model.metrics.assignments}</td>
                                         <td className="px-6 py-4 text-center">
                                             <span className={`px-2 py-1 rounded text-xs font-medium ${
-                                                model.metrics.compiles === "Sí" || model.metrics.compiles === "Yes" 
-                                                ? "bg-green-100 text-green-700" 
-                                                : "bg-gray-100 text-gray-500"
+                                                checkCompilation(model.metrics.compiles)
+                                                ? "bg-green-100 text-green-700 border border-green-200" 
+                                                : "bg-gray-100 text-gray-500 border border-gray-200"
                                             }`}>
                                                 {model.metrics.compiles}
                                             </span>
@@ -201,7 +502,6 @@ export default function Prompt2Page() {
                                             <p className="text-gray-400 text-xs">Prompt2.java</p>
                                             <span className="text-[10px] text-gray-500">{model.name} Output</span>
                                         </div>
-                                        {/* SCROLL ACTIVADO AQUÍ */}
                                         <pre className="text-xs text-green-400 font-mono min-h-[200px] max-h-[500px] overflow-y-auto overflow-x-auto whitespace-pre">
                                             {model.code}
                                         </pre>
@@ -223,13 +523,15 @@ export default function Prompt2Page() {
                                                     <p>Atributos: <span className="font-bold">{model.metrics.attributes}</span></p>
                                                     <p>Asignaciones: <span className="font-bold">{model.metrics.assignments}</span></p>
                                                 </div>
-                                                <p className="text-gray-400 italic mt-2 border-t border-gray-200 pt-1">
-                                                    Estado: {model.metrics.compiles === "Sí" ? "Compilación Exitosa" : "Pendiente"}
+                                                <p className={`italic mt-2 border-t border-gray-200 pt-1 ${
+                                                    checkCompilation(model.metrics.compiles) ? "text-gray-400 italic mt-2 border-t border-gray-200 pt-1" : "text-gray-400"
+                                                }`}>
+                                                    Estado: {model.metrics.compiles}
                                                 </p>
                                             </div>
                                         </div>
 
-                                        {/* Imagen / Pantallazo (Con lógica de visualización) */}
+                                        {/* Imagen / Pantallazo */}
                                         <div className="aspect-video bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 overflow-hidden flex flex-col items-center justify-center hover:bg-gray-50 transition-colors">
                                             {model.image ? (
                                                 <img 

@@ -19,8 +19,8 @@ const llms: LLMInfo[] = [
   },
   {
     name: "DeepSeek-V3",
-    description: "La última iteración de la serie DeepSeek. Un modelo potente que utiliza arquitectura Mixture-of-Experts (MoE) para competir con modelos propietarios de alto nivel.",
-    features: ["Especialista en Código (Coding)", "Arquitectura MoE", "Alto razonamiento lógico", "Eficiencia en entrenamiento"]
+    description: "La última iteración de la serie DeepSeek. Un modelo potente que utiliza arquitectura Mixture-of-Experts (MoE) para competir con modelos propietarios de alto nivel, se usara una version en linea debido a las limitaciones de hardware.",
+    features: ["Especialista en Código (Coding)", "Arquitectura MoE", "Alto razonamiento lógico", "Eficiencia en entrenamiento", "Requiere más recursos computacionales"]
   },
   {
     name: "BGE-M3",
@@ -36,8 +36,8 @@ const llms: LLMInfo[] = [
   },
   {
     name: "Llama 3.3",
-    description: "La evolución más reciente de la familia Llama de Meta. Introduce mejoras significativas en instrucción y generación de código complejo.",
-    features: ["Estado del arte en Open Source", "Seguridad mejorada", "Capacidad de razonamiento superior", "Excelente comprensión de instrucciones"]
+    description: "La evolución más reciente de la familia Llama de Meta. Introduce mejoras significativas en instrucción y generación de código complejo, se usara una version en liena debido a las limitaciones de hardware.",
+    features: ["Estado del arte en Open Source", "Seguridad mejorada", "Capacidad de razonamiento superior", "Excelente comprensión de instrucciones", "Requiere más recursos computacionales"]
   }
 ];
 
